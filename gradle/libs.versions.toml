@@ -1,0 +1,85 @@
+[versions]
+
+# Versions Gradle
+agp = "8.6.1"
+
+# Versions Kotlin
+kotlin = "1.9.0"
+
+# Versions Androidx
+activity         = "1.9.2"
+appcompat        = "1.7.0"
+constraintlayout = "2.1.4"
+coreKtx          = "1.13.1"
+fragmentKtx      = "1.8.3"
+lifecycle        = "2.8.6"
+navigation       = "2.8.1"
+
+# Versions Google
+googleDagger     = "2.52"
+googleDaggerHilt = "2.52"
+googleMaterial   = "1.12.0"
+
+# Versions Squareup
+squareupOkhttp3  = "4.12.0"
+squareupRetrofit = "2.11.0"
+
+# Versions Koin
+koin = "4.0.0"
+
+# Versions RxJava
+rxjava = "3.1.9"
+rxandroid = "3.0.2"
+
+
+[libraries]
+
+# Libraries Androidx
+androidx-activity               = { group = "androidx.activity",         name = "activity",                version.ref = "activity" }
+androidx-appcompat              = { group = "androidx.appcompat",        name = "appcompat",               version.ref = "appcompat" }
+androidx-constraintlayout       = { group = "androidx.constraintlayout", name = "constraintlayout",        version.ref = "constraintlayout" }
+androidx-coreKtx                = { group = "androidx.core",             name = "core-ktx",                version.ref = "coreKtx" }
+androidx-fragmentKtx            = { group = "androidx.fragment",         name = "fragment-ktx",            version.ref = "fragmentKtx" }
+androidx-lifecycle-livedataKtx  = { group = "androidx.lifecycle",        name = "lifecycle-livedata-ktx",  version.ref = "lifecycle" }
+androidx-lifecycle-viewmodelKtx = { group = "androidx.lifecycle",        name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-navigation             = { group = "androidx.navigation",       name = "navigation-fragment",     version.ref = "navigation" }
+
+# Libraries Google
+google-material = { group = "com.google.android.material", name = "material", version.ref = "googleMaterial" }
+
+# Libraries Google Dagger
+google-dagger          = { group = "com.google.dagger", name = "dagger",          version.ref = "googleDagger" }
+google-dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "googleDagger" }
+
+# Libraries Google Dagger Hilt
+google-dagger-hilt-android  = { group = "com.google.dagger", name = "hilt-android",  version.ref = "googleDaggerHilt" }
+google-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "googleDaggerHilt" }
+
+# Libraries Koin
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-core    = { group = "io.insert-koin", name = "koin-core",    version.ref = "koin" }
+
+# Libraries RxJava
+rxjava3-rxjava    = { group = "io.reactivex.rxjava3", name = "rxjava",    version.ref = "rxjava" }
+rxjava3-rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
+
+# Libraries Squareup
+squareup-okhttp3-loggingInterceptor = { group = "com.squareup.okhttp3",   name = "logging-interceptor", version.ref = "squareupOkhttp3" }
+squareup-okhttp3-okhttp             = { group = "com.squareup.okhttp3",   name = "okhttp",              version.ref = "squareupOkhttp3" }
+squareup-okhttp3-okhttp3            = { group = "com.squareup.okhttp3",   name = "okhttp-bom",          version.ref = "squareupOkhttp3" }
+squareup-retrofit2-adapterRxjava3   = { group = "com.squareup.retrofit2", name = "adapter-rxjava3",     version.ref = "squareupRetrofit" }
+squareup-retrofit2-converterGson    = { group = "com.squareup.retrofit2", name = "converter-gson",      version.ref = "squareupRetrofit" }
+squareup-retrofit2-retrofit         = { group = "com.squareup.retrofit2", name = "retrofit",            version.ref = "squareupRetrofit" }
+
+
+[plugins]
+
+# Plugins Android
+android-application = { id = "com.android.application",        version.ref = "agp" }
+
+# Plugins Jetbrains
+kotlin-android      = { id = "org.jetbrains.kotlin.android",   version.ref = "kotlin" }
+kotlin-kapt         = { id = "org.jetbrains.kotlin.kapt",      version.ref = "kotlin" }
+
+# Plugins Google
+google-dagger-hilt  = { id = "com.google.dagger.hilt.android", version.ref = "googleDaggerHilt" }

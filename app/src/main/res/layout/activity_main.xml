@@ -1,0 +1,127 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="56dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/home_title"
+                android:textColor="@color/colorPrimary"
+                android:textSize="44sp" />
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/roboto_italic"
+                android:text="@string/home_subtitle"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edtCep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_border_gray"
+                android:fontFamily="@font/roboto_medium"
+                android:imeOptions="actionSearch"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="8"
+                android:minWidth="180dp"
+                android:paddingVertical="12dp"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                tools:ignore="TextFields" />
+
+            <ViewFlipper
+                android:id="@+id/viewFlipper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginVertical="24dp"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/messageResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    tools:text="CEP não encontrado." />
+
+                <include
+                    android:id="@+id/includeContentResult"
+                    layout="@layout/content_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="32dp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarResult"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/colorPrimary" />
+
+            </ViewFlipper>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/btnBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_selector"
+        android:gravity="center"
+        android:minHeight="56dp"
+        android:orientation="horizontal"
+        tools:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/iconCopy"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="4dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_search"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buscar_cep"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
