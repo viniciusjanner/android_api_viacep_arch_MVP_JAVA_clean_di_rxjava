@@ -1,0 +1,18 @@
+<resources>
+    <color name="blue_primary">#2196F3</color>
+    <color name="blue_light">#BBDEFB</color>
+    <color name="blue_dark">#1976D2</color>
+    <color name="accent_color">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#B0BEC5</color>
+    <color name="gray_2">#52555B</color>
+
+    <!-- Cores do tema -->
+    <color name="colorPrimary">@color/blue_primary</color>
+    <color name="colorPrimaryVariant">@color/blue_dark</color>
+    <color name="colorOnPrimary">@color/white</color>
+    <color name="colorSecondary">@color/blue_light</color>
+    <color name="colorSecondaryVariant">@color/blue_primary</color>
+    <color name="colorOnSecondary">@color/black</color>
+</resources>

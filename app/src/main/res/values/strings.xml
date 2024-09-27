@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ViaCep</string>
+
+    <string name="address_parcial">%1$s - %2$s \n%3$s - %4$s %5$s \nCEP %6$s</string>
+    <string name="buscar_cep">Buscar CEP</string>
+    <string name="endereco">Endereço</string>
+
+    <string name="home_title">ViaCEP</string>
+    <string name="home_subtitle">Digite o CEP que você deseja encontrar:</string>
+</resources>
