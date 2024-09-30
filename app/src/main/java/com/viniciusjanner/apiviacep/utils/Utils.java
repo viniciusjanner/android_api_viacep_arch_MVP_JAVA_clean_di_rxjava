@@ -61,7 +61,7 @@ public class Utils {
         ClipData clip = ClipData.newPlainText("Texto copiado", textToCopy);
         clipboard.setPrimaryClip(clip);
 
-        String message = "Texto copiado para a área de transferência";
+        String message = "Texto copiado para a\nárea de transferência";
         Utils.showCustomToast(message);
     }
 
