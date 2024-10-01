@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Estado desabilitado -->
+    <item android:drawable="@color/gray" android:state_enabled="false" />
+
+    <!-- Estado pressionado -->
+    <item android:drawable="@color/blue_dark" android:state_pressed="true" />
+
+    <!-- Estado focado -->
+    <item android:drawable="@color/colorPrimary" android:state_focused="true" />
+
+    <!-- Estado habilitado (padrão) -->
+    <item android:drawable="@color/colorPrimary" android:state_enabled="true" />
+</selector>

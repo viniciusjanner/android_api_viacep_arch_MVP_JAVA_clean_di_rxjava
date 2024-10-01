@@ -11,9 +11,10 @@ activity         = "1.9.2"
 appcompat        = "1.7.0"
 constraintlayout = "2.1.4"
 coreKtx          = "1.13.1"
+coreSplashScreen = "1.0.1"
 fragmentKtx      = "1.8.3"
 lifecycle        = "2.8.6"
-navigation       = "2.8.1"
+multidex         = "2.0.1"
 
 # Versions Google
 googleDagger     = "2.52"
@@ -39,10 +40,11 @@ androidx-activity               = { group = "androidx.activity",         name = 
 androidx-appcompat              = { group = "androidx.appcompat",        name = "appcompat",               version.ref = "appcompat" }
 androidx-constraintlayout       = { group = "androidx.constraintlayout", name = "constraintlayout",        version.ref = "constraintlayout" }
 androidx-coreKtx                = { group = "androidx.core",             name = "core-ktx",                version.ref = "coreKtx" }
+androidx-coreSplashScreen       = { group = "androidx.core",             name = "core-splashscreen",       version.ref = "coreSplashScreen" }
 androidx-fragmentKtx            = { group = "androidx.fragment",         name = "fragment-ktx",            version.ref = "fragmentKtx" }
 androidx-lifecycle-livedataKtx  = { group = "androidx.lifecycle",        name = "lifecycle-livedata-ktx",  version.ref = "lifecycle" }
 androidx-lifecycle-viewmodelKtx = { group = "androidx.lifecycle",        name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
-androidx-navigation             = { group = "androidx.navigation",       name = "navigation-fragment",     version.ref = "navigation" }
+androidx-multidex               = { group = "androidx.multidex",         name = "multidex",                version.ref = "multidex" }
 
 # Libraries Google
 google-material = { group = "com.google.android.material", name = "material", version.ref = "googleMaterial" }
