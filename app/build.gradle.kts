@@ -16,16 +16,20 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        multiDexEnabled = true
+
         buildConfigField("String", "BASE_URL", "\"https://viacep.com.br/ws/\"")
     }
 
     buildFeatures {
         buildConfig = true
+        viewBinding = true
     }
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -47,10 +51,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-    viewBinding {
-        enable = true
-    }
 }
 
 dependencies {
@@ -59,10 +59,11 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.coreKtx)
+    implementation(libs.androidx.coreSplashScreen)
     implementation(libs.androidx.fragmentKtx)
     implementation(libs.androidx.lifecycle.livedataKtx)
     implementation(libs.androidx.lifecycle.viewmodelKtx)
-    implementation(libs.androidx.navigation)
+    implementation(libs.androidx.multidex)
 
     // Google
     implementation(libs.google.material)
