@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Screen.Splash" parent="Theme.SplashScreen">
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_viacep</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="windowSplashScreenBackground">@color/colorBackgroundSplash</item>
+        <item name="postSplashScreenTheme">@style/Theme.Screen.Home</item>
+    </style>
+
+</resources>
