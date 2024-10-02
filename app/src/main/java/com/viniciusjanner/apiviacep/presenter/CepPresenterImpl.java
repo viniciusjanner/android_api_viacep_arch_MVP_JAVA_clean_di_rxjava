@@ -1,7 +1,5 @@
 package com.viniciusjanner.apiviacep.presenter;
 
-import androidx.annotation.NonNull;
-
 import com.viniciusjanner.apiviacep.api.RetrofitClient;
 import com.viniciusjanner.apiviacep.api.ViaCepApi;
 import com.viniciusjanner.apiviacep.model.Address;
@@ -10,15 +8,16 @@ import com.viniciusjanner.apiviacep.utils.Utils;
 
 import java.lang.ref.WeakReference;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CepPresenterImpl implements CepContract.Presenter {
 
     private WeakReference<CepContract.View> viewRef;
     private ViaCepApi apiService;
     private Address address;
+    private final CompositeDisposable disposable = new CompositeDisposable();
 
     @Override
     public void attachView(CepContract.View view) {
@@ -29,6 +28,7 @@ public class CepPresenterImpl implements CepContract.Presenter {
     @Override
     public void detachView() {
         this.viewRef.clear();
+        disposable.clear();
     }
 
     private CepContract.View getView() {
@@ -47,33 +47,23 @@ public class CepPresenterImpl implements CepContract.Presenter {
         }
 
         view.showLoading();
-        Call<Address> call = apiService.fetchAddress(cep);
-        call.enqueue(new Callback<Address>() {
-            @Override
-            public void onResponse(@NonNull Call<Address> call, @NonNull Response<Address> response) {
-                view.hideLoading();
-
-                if (response.isSuccessful() && response.body() != null) {
-                    Address address = response.body();
+        disposable.add(apiService.fetchAddress(cep)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                address -> {
                     //
                     // A api viacep retorna apenas error = true no json caso o cep não seja encontrado
                     //
                     if (!address.isErro()) {
                         handleAddressFetchSuccess(address);
                     } else {
+                        view.hideLoading();
                         view.displayError(ErrorMessage.ERROR_ADDRESS_NOT_FOUND.getMessage());
                     }
-                } else {
-                    view.displayError(ErrorMessage.ERROR_ADDRESS_FETCH.getMessage());
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<Address> call, @NonNull Throwable t) {
-                view.hideLoading();
-                handleError(ErrorMessage.ERROR_ADDRESS_FETCH.getMessage());
-            }
-        });
+                },
+                throwable -> handleError(ErrorMessage.ERROR_ADDRESS_FETCH.getMessage())
+            ));
     }
 
     private void handleAddressFetchSuccess(Address address) {
