@@ -2,6 +2,7 @@ package com.viniciusjanner.apiviacep.view;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
@@ -14,7 +15,11 @@ import com.viniciusjanner.apiviacep.presenter.CepContract;
 import com.viniciusjanner.apiviacep.presenter.CepFactory;
 import com.viniciusjanner.apiviacep.utils.Utils;
 
+import androidx.core.splashscreen.SplashScreen;
+
 public class MainActivity extends AppCompatActivity implements CepContract.View {
+
+    private static final String TAG_LOG = MainActivity.class.getSimpleName();
 
     private ActivityMainBinding binding;
     private CepContract.Presenter presenter;
@@ -31,12 +36,23 @@ public class MainActivity extends AppCompatActivity implements CepContract.View 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        try {
+            // Splash Screen
+            // Instalar a Splash Screen usando a compatibilidade do AndroidX
+            SplashScreen.Companion.installSplashScreen(this);
+            Thread.sleep(2500L);
 
-        initPresenter();
-        setupListeners();
-        Utils.openKeyboard(binding.edtCep);
+            // Home Screen
+            binding = ActivityMainBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
+
+            initPresenter();
+            setupListeners();
+            Utils.openKeyboard(binding.edtCep);
+
+        } catch (Exception e) {
+            Log.e(TAG_LOG, "onCreate: Error: " + e.getMessage());
+        }
     }
 
     @Override
