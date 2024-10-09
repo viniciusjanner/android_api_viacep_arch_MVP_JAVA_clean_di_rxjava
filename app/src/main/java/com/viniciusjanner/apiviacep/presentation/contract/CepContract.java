@@ -1,8 +1,8 @@
-package com.viniciusjanner.apiviacep.presenter;
+package com.viniciusjanner.apiviacep.presentation.contract;
 
 import android.content.Context;
 
-import com.viniciusjanner.apiviacep.model.Address;
+import com.viniciusjanner.apiviacep.domain.model.AddressModel;
 
 public interface CepContract {
 
@@ -14,7 +14,7 @@ public interface CepContract {
 
         void hideLoading();
 
-        void displayAddress(Address address);
+        void displayAddress(AddressModel addressModel);
 
         void displayError(String message);
     }

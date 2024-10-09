@@ -24,7 +24,7 @@
         tools:targetApi="tiramisu">
 
         <activity
-            android:name=".view.MainActivity"
+            android:name=".presentation.view.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Screen.Splash"
             android:windowSoftInputMode="adjustResize">

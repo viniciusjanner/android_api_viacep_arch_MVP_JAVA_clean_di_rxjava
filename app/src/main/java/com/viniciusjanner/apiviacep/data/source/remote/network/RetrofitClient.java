@@ -1,4 +1,4 @@
-package com.viniciusjanner.apiviacep.api;
+package com.viniciusjanner.apiviacep.data.source.remote.network;
 
 import android.os.Debug;
 import android.util.Log;
@@ -20,14 +20,14 @@ public class RetrofitClient {
 
     private static final String TAG_LOG = RetrofitClient.class.getSimpleName();
 
-    private static final Boolean debuggable = Debug.isDebuggerConnected();
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static final int TIMEOUT_SECONDS = 30;
     private static Retrofit retrofit;
 
     private static HttpLoggingInterceptor createLoggingInterceptor() {
         return new HttpLoggingInterceptor(
             message -> {
-                if (debuggable) {
+                if (BuildConfig.DEBUG || Debug.isDebuggerConnected()) {
                     //
                     // Verifica se a resposta é JSON e faz o pretty print
                     //
@@ -59,14 +59,14 @@ public class RetrofitClient {
 
     private static OkHttpClient createOkHttpClient() {
         return new OkHttpClient.Builder()
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
+            .readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
+            .writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .addInterceptor(createLoggingInterceptor())
             .build();
     }
 
-    public static synchronized Retrofit getRetrofitInstance() {
+    public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)

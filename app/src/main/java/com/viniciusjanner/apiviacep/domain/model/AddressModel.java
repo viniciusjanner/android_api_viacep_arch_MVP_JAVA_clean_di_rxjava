@@ -1,8 +1,9 @@
-package com.viniciusjanner.apiviacep.model;
+package com.viniciusjanner.apiviacep.domain.model;
 
 import com.viniciusjanner.apiviacep.utils.Utils;
 
-public class Address {
+@SuppressWarnings("unused")
+public class AddressModel {
 
     private String cep;
     private String logradouro;
@@ -19,6 +20,23 @@ public class Address {
     private String siafi; // Sistema de Administração Financeira do Governo Federal
 
     private boolean erro;
+
+    public AddressModel(String cep, String logradouro, String complemento, String unidade, String bairro, String localidade, String uf, String estado, String regiao, String ibge, String gia, String ddd, String siafi, boolean erro) {
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.complemento = complemento;
+        this.unidade = unidade;
+        this.bairro = bairro;
+        this.localidade = localidade;
+        this.uf = uf;
+        this.estado = estado;
+        this.regiao = regiao;
+        this.ibge = ibge;
+        this.gia = gia;
+        this.ddd = ddd;
+        this.siafi = siafi;
+        this.erro = erro;
+    }
 
     public String getCep() {
         return cep;
