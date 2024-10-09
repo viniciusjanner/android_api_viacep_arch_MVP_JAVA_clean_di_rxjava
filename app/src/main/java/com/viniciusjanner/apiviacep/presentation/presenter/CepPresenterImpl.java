@@ -1,8 +1,8 @@
-package com.viniciusjanner.apiviacep.presenter;
+package com.viniciusjanner.apiviacep.presentation.presenter;
 
-import com.viniciusjanner.apiviacep.api.RetrofitClient;
-import com.viniciusjanner.apiviacep.api.ViaCepApi;
-import com.viniciusjanner.apiviacep.model.Address;
+import com.viniciusjanner.apiviacep.domain.usecase.FetchAddressUseCase;
+import com.viniciusjanner.apiviacep.domain.model.AddressModel;
+import com.viniciusjanner.apiviacep.presentation.contract.CepContract;
 import com.viniciusjanner.apiviacep.utils.ErrorMessage;
 import com.viniciusjanner.apiviacep.utils.Utils;
 
@@ -10,26 +10,29 @@ import java.lang.ref.WeakReference;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CepPresenterImpl implements CepContract.Presenter {
 
     private WeakReference<CepContract.View> viewRef;
-    private ViaCepApi apiService;
-    private Address address;
+    private final FetchAddressUseCase fetchAddressUseCase;
+    private AddressModel addressModel;
     private final CompositeDisposable disposable = new CompositeDisposable();
+
+    public CepPresenterImpl(FetchAddressUseCase fetchAddressUseCase) {
+        this.fetchAddressUseCase = fetchAddressUseCase;
+    }
 
     @Override
     public void attachView(CepContract.View view) {
-        this.apiService = RetrofitClient.createService(ViaCepApi.class);
         this.viewRef = new WeakReference<>(view);
     }
 
     @Override
     public void detachView() {
-        this.viewRef.clear();
+        viewRef.clear();
         disposable.clear();
     }
+
 
     private CepContract.View getView() {
         return viewRef.get();
@@ -47,8 +50,8 @@ public class CepPresenterImpl implements CepContract.Presenter {
         }
 
         view.showLoading();
-        disposable.add(apiService.fetchAddress(cep)
-            .subscribeOn(Schedulers.io())
+
+        disposable.add(fetchAddressUseCase.execute(cep)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 address -> {
@@ -66,15 +69,15 @@ public class CepPresenterImpl implements CepContract.Presenter {
             ));
     }
 
-    private void handleAddressFetchSuccess(Address address) {
-        this.address = address;
+    private void handleAddressFetchSuccess(AddressModel addressModel) {
+        this.addressModel = addressModel;
 
         CepContract.View view = getView();
 
         if (view == null) return;
 
         view.hideLoading();
-        view.displayAddress(address);
+        view.displayAddress(addressModel);
     }
 
     private void handleError(String errorMessage) {
@@ -92,12 +95,12 @@ public class CepPresenterImpl implements CepContract.Presenter {
 
         if (view == null) return;
 
-        if (address == null) {
+        if (addressModel == null) {
             view.displayError(ErrorMessage.ERROR_ADDRESS_SHARE.getMessage());
             return;
         }
 
-        Utils.shareText(address.formatAddress(), view.getContext());
+        Utils.shareText(addressModel.formatAddress(), view.getContext());
     }
 
     @Override
@@ -106,11 +109,11 @@ public class CepPresenterImpl implements CepContract.Presenter {
 
         if (view == null) return;
 
-        if (address == null) {
+        if (addressModel == null) {
             view.displayError(ErrorMessage.ERROR_ADDRESS_COPY.getMessage());
             return;
         }
 
-        Utils.copyTextToClipboard(address.formatAddress());
+        Utils.copyTextToClipboard(addressModel.formatAddress());
     }
 }

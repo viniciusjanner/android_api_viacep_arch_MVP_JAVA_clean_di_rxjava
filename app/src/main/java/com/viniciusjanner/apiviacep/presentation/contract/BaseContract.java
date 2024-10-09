@@ -1,4 +1,4 @@
-package com.viniciusjanner.apiviacep.presenter;
+package com.viniciusjanner.apiviacep.presentation.contract;
 
 public interface BaseContract {
 

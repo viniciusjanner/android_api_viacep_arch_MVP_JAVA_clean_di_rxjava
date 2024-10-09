@@ -1,4 +1,4 @@
-package com.viniciusjanner.apiviacep.view;
+package com.viniciusjanner.apiviacep.presentation.view;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.viniciusjanner.apiviacep.databinding.ActivityMainBinding;
-import com.viniciusjanner.apiviacep.model.Address;
-import com.viniciusjanner.apiviacep.presenter.CepContract;
-import com.viniciusjanner.apiviacep.presenter.CepFactory;
+import com.viniciusjanner.apiviacep.domain.model.AddressModel;
+import com.viniciusjanner.apiviacep.presentation.contract.CepContract;
+import com.viniciusjanner.apiviacep.presentation.presenter.CepFactory;
 import com.viniciusjanner.apiviacep.utils.Utils;
 
 import androidx.core.splashscreen.SplashScreen;
@@ -35,36 +35,46 @@ public class MainActivity extends AppCompatActivity implements CepContract.View 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        initSplashScreen();
         super.onCreate(savedInstanceState);
+        initMainScreen();
+        initPresenter();
+        setupListeners();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (presenter != null) {
+            presenter.attachView(this);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        if (presenter != null) {
+            presenter.detachView();
+        }
+        super.onStop();
+    }
+
+    private void initSplashScreen() {
         try {
             // Splash Screen
             // Instalar a Splash Screen usando a compatibilidade do AndroidX
             SplashScreen.Companion.installSplashScreen(this);
             Thread.sleep(2500L);
 
-            // Home Screen
-            binding = ActivityMainBinding.inflate(getLayoutInflater());
-            setContentView(binding.getRoot());
-
-            initPresenter();
-            setupListeners();
-            Utils.openKeyboard(binding.edtCep);
-
         } catch (Exception e) {
             Log.e(TAG_LOG, "onCreate: Error: " + e.getMessage());
+            finish();
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        presenter.attachView(this);
-    }
-
-    @Override
-    protected void onStop() {
-        presenter.detachView();
-        super.onStop();
+    private void initMainScreen() {
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        Utils.openKeyboard(binding.edtCep);
     }
 
     private void initPresenter() {
@@ -108,10 +118,10 @@ public class MainActivity extends AppCompatActivity implements CepContract.View 
     }
 
     @Override
-    public void displayAddress(Address address) {
+    public void displayAddress(AddressModel addressModel) {
         binding.viewFlipper.setDisplayedChild(FLIPPER_CHILD_SUCCESS);
         binding.includeContentResult.txtResult.setText(
-            address.formatAddress()
+            addressModel.formatAddress()
         );
     }
 
