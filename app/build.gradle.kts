@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.viniciusjanner.apiviacep"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.viniciusjanner.apiviacep"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -44,12 +44,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
@@ -82,11 +82,11 @@ dependencies {
 
     // Dagger 2
     implementation(libs.google.dagger)
-    kapt(libs.google.dagger.compiler)
+    annotationProcessor(libs.google.dagger.compiler)
 
     // Dagger Hilt
     implementation(libs.google.dagger.hilt.android)
-    kapt(libs.google.dagger.hilt.compiler)
+    annotationProcessor(libs.google.dagger.hilt.compiler)
 
     // Koin
     implementation(libs.koin.android)
