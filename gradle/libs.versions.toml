@@ -7,12 +7,12 @@ agp = "8.6.1"
 kotlin = "1.9.0"
 
 # Versions Androidx
-activity         = "1.9.2"
+activity         = "1.9.3"
 appcompat        = "1.7.0"
 constraintlayout = "2.1.4"
 coreKtx          = "1.13.1"
 coreSplashScreen = "1.0.1"
-fragmentKtx      = "1.8.3"
+fragmentKtx      = "1.8.4"
 lifecycle        = "2.8.6"
 multidex         = "2.0.1"
 
@@ -77,11 +77,11 @@ squareup-retrofit2-retrofit         = { group = "com.squareup.retrofit2", name =
 [plugins]
 
 # Plugins Android
-android-application = { id = "com.android.application",        version.ref = "agp" }
+android-application = { id = "com.android.application", version.ref = "agp" }
 
 # Plugins Jetbrains
-kotlin-android      = { id = "org.jetbrains.kotlin.android",   version.ref = "kotlin" }
-kotlin-kapt         = { id = "org.jetbrains.kotlin.kapt",      version.ref = "kotlin" }
+kotlin-android      = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt         = { id = "org.jetbrains.kotlin.kapt",    version.ref = "kotlin" }
 
 # Plugins Google
 google-dagger-hilt  = { id = "com.google.dagger.hilt.android", version.ref = "googleDaggerHilt" }
